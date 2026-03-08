@@ -253,11 +253,10 @@ where
                     g.draw(|off_x, off_y, v| {
                         let off_x = off_x as i32 + bb.min.x;
                         let off_y = off_y as i32 + bb.min.y;
+                        let text_a = (v.clamp(0.0, 1.0) * 255.0) as u32;
                         // There's still a possibility that the glyph clips the boundaries of the bitmap
                         if off_x >= 0 && off_x < width as i32 && off_y >= 0 && off_y < height as i32
                         {
-                            let text_a = (v * 255.0) as u32;
-
                             let bg_color = match self.anti_aliasing {
                                 AntiAliasing::BackgroundColor => self.background_color,
                                 AntiAliasing::SolidColor(c) => Some(c),
